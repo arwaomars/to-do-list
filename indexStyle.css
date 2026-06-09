@@ -1,0 +1,160 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Header */
+header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+/* Top navigation bar */
+.navbar {
+  display: flex;
+  background-color: #333;
+}
+
+/* Navigation bar links */
+.navbar a {
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Column container */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: right;
+}
+
+/* cards column */
+#card_side {
+  flex: 70%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+.cards {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+  height: 200px;
+  margin-top: 20px;
+}
+
+/* chart column */
+#charts_side {
+  flex: 30%;
+  background-color: white;
+  padding: 20px;
+}
+.charts {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+  height: 200px;
+  height: 200px;
+}
+
+/* Footer */
+footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .container,
+  .navbar {
+    flex-direction: column;
+  }
+}
+
+/*kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk*/
+
+.task-bar {
+  display: flex;
+  justify-content: space-between; /* لتوزيع المجموعتين على الأطراف */
+  align-items: center; /* لمحاداة العناصر عمودياً في المنتصف */
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 800px; /* يمكنك تغيير العرض حسب حاجتك */
+  padding: 12px 24px;
+  border-bottom: 2px solid #e0e0e0; /* الخط السفلي الرمادي */
+  box-sizing: border-box;
+}
+
+/* --- تنسيق قسم اليمين (النص والتاريخ) --- */
+.task-info {
+  text-align: right;
+}
+
+.task-title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.task-date {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px; /* مسافة بين التاريخ وأيقونة التقويم */
+  color: #666666;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* --- تنسيق قسم اليسار (الأزرار) --- */
+.action-buttons {
+  display: flex;
+  gap: 12px; /* المسافة بين الدوائر */
+}
+
+/* التنسيق المشترك لجميع الأزرار الدائرية */
+.btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%; /* لجعل الزر دائرياً تماماً */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff; /* لون الأيقونة داخل الدائرة */
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn:hover {
+  opacity: 0.85; /* تأثير خفيف عند مرور الماوس */
+}
+
+/* ألوان الأزرار المحددة بناءً على الصورة */
+.btn-edit {
+  background-color: #4d59cb; /* اللون الأزرق/البنفسجي للقلم */
+}
+
+.btn-success {
+  background-color: #008726; /* اللون الأخضر لعلامة الصح */
+}
+
+.btn-delete {
+  background-color: #720000; /* اللون العنابي/الأحمر الداكن للسلة */
+}
