@@ -25,30 +25,26 @@
     <div class="container">
       <div id="card_side">
         <div class="active cards">
-          <div class="task-bar">
-            <div class="action-buttons">
-              <button class="btn btn-edit">
-                <i class="fas fa-pencil-alt"></i>
-              </button>
-              <button class="btn btn-success">
-                <i class="fas fa-check"></i>
-              </button>
-              <button class="btn btn-delete">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
+          <div id="card_header">
+            <button id="add_task_btn" class="circular_btn">add</button>
+            <h1 id="card_header_title">مهامي</h1>
+          </div>
 
-            <div class="task-info">
-              <h3 class="task-title">قراءة كتاب</h3>
-              <div class="task-date">
-                <span>15/10/2022</span>
-                <i class="far fa-calendar-alt"></i>
+          <div class="task_table">
+            <div class="task">
+              <div class="task_info">
+                <h2 id="task_detail">قراءة كتاب</h2>
+                <p class="task_date">10/10/2030</p>
+              </div>
+
+              <div id="task_actions">
+                <button class="circular_btn" id="edit_btn">E</button>
+                <button class="circular_btn" id="done_btn">C</button>
+                <button class="circular_btn" id="delet_btn">D</button>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="cards">cards info</div>
       </div>
 
       <div id="charts_side">
