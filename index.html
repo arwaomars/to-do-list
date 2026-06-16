@@ -94,13 +94,24 @@
     </div>
 
     <!--النافذة المنبثقة لاضافة مهمة جديدة-->
-    <div id="custom_prompt" class="modal-overlay" style="display: none">
+    <div id="add_task_prompt" class="modal-overlay" style="display: none">
       <div class="card-content">
         <h3>إضافة مهمة جديدة</h3>
         <input type="text" id="task_input" placeholder="ادخل المهمة هنا..." />
         <div class="card-buttons">
           <button id="cancel_task_btn">إلغاء</button>
           <button id="confirm_task_btn">إضافة</button>
+        </div>
+      </div>
+    </div>
+    <!--تأكيد الحذف-->
+    <div id="delet_task_prompt" class="modal-overlay" style="display: none">
+      <div class="card-content">
+        <h3>هل انت متأكد من رغبتك في حذف المهمة</h3>
+        <p>لا يمكن التراجع عن الحذف</p>
+        <div class="card-buttons">
+          <button id="undelet_task_btn">تراجع</button>
+          <button id="delet_task_btn">حذف</button>
         </div>
       </div>
     </div>

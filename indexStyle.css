@@ -198,7 +198,6 @@ header {
   align-items: center;
   z-index: 1000;
 }
-
 /*نافذة الادخال*/
 .card-content {
   background: #fff;
@@ -209,7 +208,6 @@ header {
   max-width: 90%;
   text-align: center;
 }
-
 /* تخصيص صندوق الإدخال */
 #task_input {
   width: 100%;
@@ -221,7 +219,6 @@ header {
   direction: rtl;
   font-family: "Baloo Bhaijaan 2", sans-serif;
 }
-
 /* أزرار التحكم */
 .card-buttons button {
   padding: 8px 20px;
@@ -231,11 +228,13 @@ header {
   cursor: pointer;
   font-family: "Baloo Bhaijaan 2", sans-serif;
 }
-#confirm_task_btn {
+#confirm_task_btn,
+#undelet_task_btn {
   background-color: #28a745;
   color: white;
 } /* لون الإضافة */
-#cancel_task_btn {
+#cancel_task_btn,
+#delet_task_btn {
   background-color: #dc3545;
   color: white;
 } /* لون الإلغاء */
