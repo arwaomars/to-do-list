@@ -209,7 +209,8 @@ header {
   text-align: center;
 }
 /* تخصيص صندوق الإدخال */
-#task_input {
+#task_input,
+#edit_task_input {
   width: 100%;
   padding: 10px;
   margin: 15px 0;
@@ -229,12 +230,14 @@ header {
   font-family: "Baloo Bhaijaan 2", sans-serif;
 }
 #confirm_task_btn,
-#undelet_task_btn {
+#undelet_task_btn,
+#update_task_btn {
   background-color: #28a745;
   color: white;
 } /* لون الإضافة */
 #cancel_task_btn,
-#delet_task_btn {
+#delet_task_btn,
+#unupdate_task_btn {
   background-color: #dc3545;
   color: white;
 } /* لون الإلغاء */

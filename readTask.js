@@ -28,7 +28,7 @@ function readTask() {
       <button class="circular_btn" id="done_btn">
         <span class="material-symbols-outlined"> check </span>
       </button>
-      <button class="circular_btn" id="edit_btn">
+      <button class="circular_btn" id="edit_btn" onclick = "editTask(${index})">
         <span class="material-symbols-outlined"> edit </span>
       </button>
       <button class="circular_btn" id="delet_btn" onclick = "deletTask(${index})">
@@ -107,6 +107,37 @@ function deletTask(index) {
   const cancelBtn = document.getElementById("undelet_task_btn");
   cancelBtn.onclick = function () {
     modal.style.display = "none"; // إخفاء النافذة دون حذف
+  };
+}
+
+function editTask(index) {
+  // 1. تصحيح getElementById
+  const modal = document.getElementById("edit_task_prompt");
+  const input = document.getElementById("edit_task_input");
+
+  // 2. تصحيح طريقة إسناد قيمة المهمة الحالية داخل حقل الإدخال
+  input.value = tasks[index].title;
+
+  // إظهار النافذة
+  modal.style.display = "flex";
+
+  // عند الضغط على زر تحديث
+  const updateBtn = document.getElementById("update_task_btn");
+  updateBtn.onclick = function () {
+    let newTitleTask = input.value.trim();
+    if (newTitleTask !== "") {
+      tasks[index].title = newTitleTask;
+      readTask(); // تأكد أن هذه الدالة مسؤولة عن تحديث القائمة في الواجهة
+      modal.style.display = "none";
+    } else {
+      alert("الرجاء إدخال نص المهمة!");
+    }
+  };
+
+  // عند الضغط على زر إلغاء
+  const cancelBtn = document.getElementById("unupdate_task_btn");
+  cancelBtn.onclick = function () {
+    modal.style.display = "none"; // إخفاء النافذة دون تعديل
   };
 }
 
