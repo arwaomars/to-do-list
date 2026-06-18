@@ -1,15 +1,20 @@
 let tasks = [
   {
+    id: "1",
     title: "قراءة كتاب",
     isDone: false,
+    completedAt: null,
   },
   {
+    id: "2",
     title: "رياضة",
-    isDone: false,
+    isDone: true,
+    completedAt: Date.now(),
   },
 ];
 
 function readTask() {
+  arrangeTheTasks();
   // 1. استهداف وتفريغ الحاوية الرئيسية الكبيرة
   document.getElementById("tasks_container").innerHTML = "";
 
@@ -19,13 +24,13 @@ function readTask() {
   // 2. تكرار المصفوفة لبناء المهام
   for (task of tasks) {
     let content = `
-  <div class="task">
+  <div class="task ${task.isDone ? "doneTask" : ""}">
     <div class="task_info">
       <h2>${task.title}</h2>
     </div>
 
     <div id="task_actions">
-      <button class="circular_btn" id="done_btn">
+      <button class="circular_btn" id="done_btn" onclick = "completeTask(${index})">
         <span class="material-symbols-outlined"> check </span>
       </button>
       <button class="circular_btn" id="edit_btn" onclick = "editTask(${index})">
@@ -48,40 +53,36 @@ function addTask() {
   const modal = document.getElementById("add_task_prompt");
   const taskInput = document.getElementById("task_input");
 
-  // 1. عند الضغط على زر "إضافة مهمة" الرئيسي بالصفحة: اظهر النافذة
-  document
-    .getElementById("add_task_btn")
-    .addEventListener("click", function () {
-      taskInput.value = ""; // تصفية الحقل
-      modal.style.display = "flex"; // إظهار النافذة في المنتصف
-      taskInput.focus();
-    });
+  // استخدام onclick يضمن أن الحدث يتبرمج مرة واحدة فقط ولا يتكرر
+  document.getElementById("add_task_btn").onclick = function () {
+    taskInput.value = "";
+    modal.style.display = "flex";
+    taskInput.focus();
+  };
 
-  // 2. عند الضغط على زر "إضافة" داخل النافذة المنبثقة
-  document
-    .getElementById("confirm_task_btn")
-    .addEventListener("click", function () {
-      let newtask = taskInput.value.trim();
+  document.getElementById("confirm_task_btn").onclick = function () {
+    let newtask = taskInput.value.trim();
 
-      if (newtask !== "") {
-        let newTaskObj = {
-          title: newtask,
-          isDone: false,
-        };
-        tasks.push(newTaskObj);
-        readTask();
-        modal.style.display = "none"; // إخفاء النافذة بعد الحفظ
-      } else {
-        alert("الرجاء إدخال نص المهمة!");
-      }
-    });
+    if (newtask !== "") {
+      let newTaskObj = {
+        id: Date.now(), // 3. نولّد ID فريد يعتمد على الوقت الحالي بالملي ثانية
+        title: newtask,
+        isDone: false, // المهمة الجديدة دائماً false
+        completedAt: null,
+      };
+      tasks.push(newTaskObj);
 
-  // 3. عند الضغط على زر "إلغاء"
-  document
-    .getElementById("cancel_task_btn")
-    .addEventListener("click", function () {
-      modal.style.display = "none"; // إخفاء النافذة دون حفظ
-    });
+      readTask(); // ارسم الواجهة بناءً على الترتيب الجديد
+
+      modal.style.display = "none";
+    } else {
+      alert("الرجاء إدخال نص المهمة!");
+    }
+  };
+
+  document.getElementById("cancel_task_btn").onclick = function () {
+    modal.style.display = "none";
+  };
 }
 
 function deletTask(index) {
@@ -139,6 +140,29 @@ function editTask(index) {
   cancelBtn.onclick = function () {
     modal.style.display = "none"; // إخفاء النافذة دون تعديل
   };
+}
+
+function completeTask(index) {
+  tasks[index].isDone = true;
+  tasks[index].completedAt = Date.now();
+  readTask();
+}
+
+function arrangeTheTasks() {
+  tasks.sort((a, b) => {
+    // غير المكتملة أولاً
+    if (a.isDone !== b.isDone) {
+      return a.isDone - b.isDone;
+    }
+
+    // إذا كانت المهمتان غير مكتملتين
+    if (!a.isDone && !b.isDone) {
+      return a.id - b.id; // الأحدث فوق
+    }
+
+    // إذا كانت المهمتان مكتملتين
+    return a.completedAt - b.completedAt; // أول من أُنجز يكون فوق
+  });
 }
 
 readTask();

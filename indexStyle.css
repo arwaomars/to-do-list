@@ -127,6 +127,10 @@ header {
   border-bottom: 1px solid #e0e0e0; /* خط سفلي خفيف بدلاً من الرمادي الغامق العريض */
 }
 
+.doneTask {
+  background-color: #28a745;
+}
+
 .task:hover {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12);
   border: 1px solid #1abc9c; /* تحديد بلون الهيدر الأخضر عند مرور الماوس لمظهر احترافي */
