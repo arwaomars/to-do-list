@@ -1,17 +1,14 @@
-let tasks = [
-  {
-    id: "1",
-    title: "قراءة كتاب",
-    isDone: false,
-    completedAt: null,
-  },
-  {
-    id: "2",
-    title: "رياضة",
-    isDone: true,
-    completedAt: Date.now(),
-  },
-];
+let tasks = [];
+
+//======= storage funcions =======
+function setTaskToStorage() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+function getTaskFromStorage() {
+  let retrievedTasks = JSON.parse(localStorage.getItem("tasks"));
+  tasks = retrievedTasks ?? [];
+}
+getTaskFromStorage();
 
 function readTask() {
   arrangeTheTasks();
@@ -71,8 +68,8 @@ function addTask() {
         completedAt: null,
       };
       tasks.push(newTaskObj);
-
-      readTask(); // ارسم الواجهة بناءً على الترتيب الجديد
+      setTaskToStorage();
+      readTask();
 
       modal.style.display = "none";
     } else {
@@ -100,6 +97,8 @@ function deletTask(index) {
   const deleteBtn = document.getElementById("delet_task_btn");
   deleteBtn.onclick = function () {
     tasks.splice(index, 1); // حذف العنصر من المصفوفة
+    setTaskToStorage();
+
     readTask(); // إعادة بناء قائمة المهام
     modal.style.display = "none"; // إخفاء النافذة
   };
@@ -128,7 +127,8 @@ function editTask(index) {
     let newTitleTask = input.value.trim();
     if (newTitleTask !== "") {
       tasks[index].title = newTitleTask;
-      readTask(); // تأكد أن هذه الدالة مسؤولة عن تحديث القائمة في الواجهة
+      setTaskToStorage();
+      readTask();
       modal.style.display = "none";
     } else {
       alert("الرجاء إدخال نص المهمة!");
@@ -145,6 +145,7 @@ function editTask(index) {
 function completeTask(index) {
   tasks[index].isDone = true;
   tasks[index].completedAt = Date.now();
+  setTaskToStorage();
   readTask();
 }
 
