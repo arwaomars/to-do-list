@@ -1,15 +1,19 @@
-let tasks = [];
-
 //======= storage funcions =======
 function setTaskToStorage() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 function getTaskFromStorage() {
   let retrievedTasks = JSON.parse(localStorage.getItem("tasks"));
-  tasks = retrievedTasks ?? [];
+
+  if (retrievedTasks && retrievedTasks.length > 0) {
+    tasks = retrievedTasks;
+  } else {
+    setTaskToStorage();
+  }
 }
 getTaskFromStorage();
 
+//======= show tasks =======
 function readTask() {
   arrangeTheTasks();
   // 1. استهداف وتفريغ الحاوية الرئيسية الكبيرة
@@ -18,34 +22,54 @@ function readTask() {
   //متغير احفظ فيه اندكس كل مهمة حتى استطيع التميز بينهم
   var index = 0;
 
+  const today = new Date();
+
+  const todayTasks = tasks.filter((task) => {
+    const taskDate = new Date(task.id);
+
+    return (
+      taskDate.getDate() === today.getDate() &&
+      taskDate.getMonth() === today.getMonth() &&
+      taskDate.getFullYear() === today.getFullYear()
+    );
+  });
   // 2. تكرار المصفوفة لبناء المهام
-  for (task of tasks) {
+  for (task of todayTasks) {
     let content = `
   <div class="task ${task.isDone ? "doneTask" : ""}">
     <div class="task_info">
-      <h2>${task.title}</h2>
+        <h2>${task.title}</h2>
     </div>
 
     <div id="task_actions">
-      <button class="circular_btn" id="done_btn" onclick = "completeTask(${index})">
-        <span class="material-symbols-outlined"> check </span>
-      </button>
-      <button class="circular_btn" id="edit_btn" onclick = "editTask(${index})">
-        <span class="material-symbols-outlined"> edit </span>
-      </button>
-      <button class="circular_btn" id="delet_btn" onclick = "deletTask(${index})">
-        <span class="material-symbols-outlined"> delete </span>
-      </button>
+        <button class="circular_btn ${task.isDone ? "done_btn_active" : ""}" id="done_btn" onclick="completeTask(${task.id})">
+            <span class="material-symbols-outlined">check</span>
+        </button>
+        
+        ${
+          !task.isDone
+            ? `
+            <button class="circular_btn" id="edit_btn" onclick="editTask(${task.id})">
+                <span class="material-symbols-outlined">edit</span>
+            </button>
+            <button class="circular_btn" id="delet_btn" onclick="deletTask(${task.id})">
+                <span class="material-symbols-outlined">delete</span>
+            </button>
+        `
+            : ""
+        }
     </div>
-  </div>
+</div>
 `;
 
     // 3. إضافة الـ HTML الجديد بداخل الحاوية الكبيرة
     document.getElementById("tasks_container").innerHTML += content;
     index++;
   }
+  updateProductivityStats();
 }
 
+//======= add tasks =======
 function addTask() {
   const modal = document.getElementById("add_task_prompt");
   const taskInput = document.getElementById("task_input");
@@ -70,6 +94,9 @@ function addTask() {
       tasks.push(newTaskObj);
       setTaskToStorage();
       readTask();
+      if (typeof updateChart === "function") {
+        updateChart();
+      }
 
       modal.style.display = "none";
     } else {
@@ -82,7 +109,9 @@ function addTask() {
   };
 }
 
-function deletTask(index) {
+//======= delete tasks =======
+function deletTask(id) {
+  const index = tasks.findIndex((task) => task.id === id);
   // 1. استهداف عنصر الـ Modal الأصلي الموجود في الـ HTML
   const modal = document.getElementById("delet_task_prompt");
 
@@ -100,6 +129,9 @@ function deletTask(index) {
     setTaskToStorage();
 
     readTask(); // إعادة بناء قائمة المهام
+    if (typeof updateChart === "function") {
+      updateChart();
+    }
     modal.style.display = "none"; // إخفاء النافذة
   };
 
@@ -110,7 +142,9 @@ function deletTask(index) {
   };
 }
 
-function editTask(index) {
+//======= edit tasks =======
+function editTask(id) {
+  const index = tasks.findIndex((task) => task.id === id);
   // 1. تصحيح getElementById
   const modal = document.getElementById("edit_task_prompt");
   const input = document.getElementById("edit_task_input");
@@ -129,6 +163,9 @@ function editTask(index) {
       tasks[index].title = newTitleTask;
       setTaskToStorage();
       readTask();
+      if (typeof updateChart === "function") {
+        updateChart();
+      }
       modal.style.display = "none";
     } else {
       alert("الرجاء إدخال نص المهمة!");
@@ -142,13 +179,19 @@ function editTask(index) {
   };
 }
 
-function completeTask(index) {
+//======= complete tasks =======
+function completeTask(id) {
+  const index = tasks.findIndex((task) => task.id === id);
   tasks[index].isDone = true;
   tasks[index].completedAt = Date.now();
   setTaskToStorage();
   readTask();
+  if (typeof updateChart === "function") {
+    updateChart();
+  }
 }
 
+//======= arrange tasks =======
 function arrangeTheTasks() {
   tasks.sort((a, b) => {
     // غير المكتملة أولاً
@@ -166,5 +209,44 @@ function arrangeTheTasks() {
   });
 }
 
-readTask();
-addTask();
+//======= Productivity =======
+function updateProductivityStats() {
+  const today = new Date();
+
+  const todayTasks = tasks.filter((task) => {
+    const taskDate = new Date(task.id);
+
+    return (
+      taskDate.getDate() === today.getDate() &&
+      taskDate.getMonth() === today.getMonth() &&
+      taskDate.getFullYear() === today.getFullYear()
+    );
+  });
+
+  const completed = todayTasks.filter((task) => task.isDone).length;
+
+  const remaining = todayTasks.length - completed;
+
+  const percent =
+    todayTasks.length === 0
+      ? 0
+      : Math.round((completed / todayTasks.length) * 100);
+
+  document.getElementById("todayTasks").textContent = todayTasks.length;
+
+  document.getElementById("completedTasks").textContent = completed;
+
+  document.getElementById("remainingTasks").textContent = remaining;
+
+  document.getElementById("progressPercent").textContent = percent + "%";
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  readTask();
+
+  addTask();
+
+  if (typeof initChart === "function") {
+    initChart();
+  }
+});

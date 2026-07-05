@@ -1,0 +1,208 @@
+/*==========================================
+=          المظهر في الأجهزة               =
+==========================================*/
+
+/*========== Tablets ==========*/
+@media (max-width: 992px) {
+  /* الهيدر */
+  header {
+    padding: 20px 30px;
+  }
+
+  /* جعل الأقسام تحت بعضها */
+  .container {
+    flex-direction: column;
+  }
+
+  /* الأقسام تأخذ عرض الشاشة */
+  #card_side,
+  #charts_side {
+    width: 100%;
+    margin: 0;
+  }
+
+  #charts_side {
+    margin-top: 20px;
+    border-radius: 0;
+  }
+
+  /* إحصائيات الإنجاز */
+  .productivity-stats {
+    gap: 15px;
+    justify-content: center;
+  }
+}
+
+/*========== Mobile ==========*/
+@media (max-width: 768px) {
+  /* الهيدر */
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .header-right h1 {
+    font-size: 32px;
+  }
+
+  .header-right p {
+    font-size: 16px;
+  }
+
+  .header-left {
+    align-items: center;
+  }
+
+  .header-info {
+    justify-content: center;
+  }
+
+  /* جسم الصفحة */
+  .container {
+    flex-direction: column;
+  }
+
+  #card_side,
+  #charts_side {
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+  }
+
+  #charts_side {
+    margin-top: 15px;
+  }
+
+  /* عنوان المهام */
+  #card_header {
+    padding: 12px 15px;
+  }
+
+  #card_header_title {
+    font-size: 20px;
+  }
+
+  /* الكروت */
+  .task {
+    padding: 15px;
+  }
+
+  .task_info h2 {
+    font-size: 16px;
+  }
+
+  #task_actions {
+    gap: 10px;
+  }
+
+  .circular_btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* أزرار الفلترة */
+  .filter-buttons-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* إحصائيات الإنجاز */
+  .productivity-stats {
+    justify-content: center;
+    gap: 15px;
+    font-size: 14px;
+  }
+
+  .productivity-stats strong {
+    font-size: 16px;
+  }
+
+  /* الرسم البياني */
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* النوافذ المنبثقة */
+  .card-content {
+    width: 95%;
+    padding: 20px;
+  }
+
+  /* الفوتر */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .footer-left {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/*========== Small Mobile ==========*/
+@media (max-width: 480px) {
+  header {
+    padding: 15px;
+  }
+
+  .header-right h1 {
+    font-size: 28px;
+  }
+
+  .header-right p {
+    font-size: 15px;
+  }
+
+  .header-info h3 {
+    font-size: 16px;
+  }
+
+  #card_header_title {
+    font-size: 18px;
+  }
+
+  .task_info h2 {
+    font-size: 15px;
+  }
+
+  /* إحصائيات الإنجاز */
+  .productivity-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap; /* يمنع نزول العناصر تحت بعض */
+    gap: 8px;
+    overflow-x: auto; /* إذا الشاشة ضيقة جدًا يسمح بالتمرير */
+    padding: 10px;
+  }
+
+  .productivity-stats span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap; /* يمنع كسر النص */
+    font-size: 13px;
+  }
+
+  .productivity-stats strong {
+    font-size: 15px;
+  }
+
+  .productivity-stats .material-symbols-outlined {
+    font-size: 18px;
+  }
+
+  .filter-buttons {
+    font-size: 13px;
+  }
+
+  .copyright-text {
+    font-size: 13px;
+  }
+}

@@ -1,12 +1,21 @@
 <!doctype html>
 <html>
   <head>
-    <title>Page Title</title>
+    <title>مدير المهام</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="indexStyle.css" />
+    <!--التنسيق-->
+    <link rel="stylesheet" href="styles/indexStyle.css" />
+    <link rel="stylesheet" href="styles/responsiveDesign.css" />
 
-    <script src="readTask.js" defer></script>
+    <!--الرسومات-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!--روابط الصفحات-->
+    <script src="tasksList.js" defer></script>
+    <script src="handleTasks.js" defer></script>
+    <script src="charts.js" defer></script>
+    <script src="handleHeader.js" defer></script>
 
     <!--الخطوط-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,22 +34,37 @@
   <body>
     <!-- Header -->
     <header>
-      <h1 id="greeting_user">اهلا أروى</h1>
-      <p>الاسترارية تصنع المستحيل</p>
-    </header>
+      <!-- جهة الترحيب -->
+      <div class="header-right">
+        <h1>أهلاً أروى 👋</h1>
+        <p>الاستمرارية تصنع المستحيل.</p>
+      </div>
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
-      <a href="#">شهر 1</a>
-      <a href="#">شهر 2</a>
-      <a href="#">شهر 3</a>
-      <a href="#">شهر 4</a>
-    </div>
+      <!-- جهة الوقت -->
+      <div class="header-left">
+        <div class="header-info">
+          <span class="material-symbols-outlined">schedule</span>
+          <h3 id="currentTime"></h3>
+        </div>
+
+        <div class="header-info">
+          <span class="material-symbols-outlined">calendar_month</span>
+          <h3 id="todayName"></h3>
+        </div>
+
+        <div class="header-info">
+          <span class="material-symbols-outlined">event</span>
+          <h3 id="currentDate"></h3>
+        </div>
+      </div>
+    </header>
 
     <!-- Content Container -->
     <div class="container">
+      <!--المهام-->
       <div id="card_side">
         <div class="active cards">
+          <!--عنوان جهة المهام (مهامي)-->
           <div id="card_header">
             <button id="add_task_btn" class="circular_btn">
               <span class="material-symbols-outlined"> add </span>
@@ -48,12 +72,14 @@
             <h1 id="card_header_title">مهامي</h1>
           </div>
 
+          <!--كارد المهام-->
           <div class="task_table" id="tasks_container">
             <div class="task">
+              <!--نص المهمة-->
               <div class="task_info">
                 <h2>هذا السطر للتعديل والمعاينة فقط في HTML</h2>
               </div>
-
+              <!--ازرار التحكم بالمهمة-->
               <div id="task_actions">
                 <button class="circular_btn" id="done_btn">
                   <span class="material-symbols-outlined"> check </span>
@@ -70,25 +96,52 @@
         </div>
       </div>
 
+      <!--التحليلات-->
       <div id="charts_side">
-        <h2>انتاجيتك خلال شهر 1</h2>
-        <div id="chart1">
-          <div class="charts">chart</div>
-          <h2>باي تشارت</h2>
-          <h5>25 يوم من يوم 1\2\2 الى يوم 3\3\3</h5>
-          <p>تظهر الرسمة انه زادتالانتاجية ثم انخفضت</p>
+        <h2>📈 الإنتاجية</h2>
+
+        <!--نسبة الانجاز اليوم-->
+        <div class="productivity-stats">
+          <span
+            ><span class="material-symbols-outlined">checklist</span> مهام
+            اليوم: <strong id="todayTasks">0</strong></span
+          >
+
+          <span
+            ><span class="material-symbols-outlined">task_alt</span> المكتملة:
+            <strong id="completedTasks">0</strong></span
+          >
+
+          <span
+            ><span class="material-symbols-outlined">pending_actions</span>
+            المتبقية: <strong id="remainingTasks">0</strong></span
+          >
+
+          <span
+            ><span class="material-symbols-outlined">trending_up</span> الإنجاز:
+            <strong id="progressPercent">0%</strong></span
+          >
         </div>
-        <div id="chart2">
-          <div class="charts">chart</div>
-          <h2>باي تشارت</h2>
-          <h5>25 يوم من يوم 1\2\2 الى يوم 3\3\3</h5>
-          <p>تظهر الرسمة انه زادتالانتاجية ثم انخفضت</p>
+
+        <!--ازرار الفلتر-->
+        <div class="filter-buttons-section">
+          <button class="filter-buttons active" onclick="changeFilter('week')">
+            الأسبوع
+          </button>
+          <button class="filter-buttons" onclick="changeFilter('month')">
+            الشهر
+          </button>
+          <button class="filter-buttons" onclick="changeFilter('year')">
+            السنة
+          </button>
+          <button class="filter-buttons" onclick="changeFilter('years')">
+            السنوات
+          </button>
         </div>
-        <div id="chart3">
-          <div class="charts">chart</div>
-          <h2>باي تشارت</h2>
-          <h5>25 يوم من يوم 1\2\2 الى يوم 3\3\3</h5>
-          <p>تظهر الرسمة انه زادتالانتاجية ثم انخفضت</p>
+
+        <!--رسمة تحليل البيانات-->
+        <div style="position: relative; width: 100%; height: 350px">
+          <canvas id="productivityChart"></canvas>
         </div>
       </div>
     </div>
@@ -128,8 +181,69 @@
     </div>
 
     <!-- Footer -->
-    <footer>
-      <h2>جميع الحقوق محفوظة لأروى</h2>
+    <footer class="main-footer">
+      <div class="footer-container">
+        <!-- جهة اليمين: الحقوق والاسم -->
+        <div class="footer-right">
+          <p class="copyright-text">
+            جميع الحقوق محفوظة © ٢٠٢٦ <span>أروى سيت</span>
+          </p>
+        </div>
+
+        <!-- جهة اليسار: روابط التواصل والشبكات -->
+        <div class="footer-left">
+          <!-- الإيميل -->
+          <a
+            href="mailto:arwa.omarsait@gmail.com"
+            class="footer-link email-link"
+          >
+            <span class="material-symbols-outlined">mail</span>
+            <span>arwa.omarsait@gmail.com</span>
+          </a>
+
+          <div class="footer-socials">
+            <!-- لينكد إن -->
+            <a
+              href="https://www.linkedin.com/in/arwa-sait-39111829a/"
+              target="_blank"
+              class="social-icon linkedin"
+              title="LinkedIn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="20"
+                height="20"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+
+            <!-- جيت هاب -->
+            <a
+              href="https://github.com/arwaomars"
+              target="_blank"
+              class="social-icon github"
+              title="GitHub"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="20"
+                height="20"
+              >
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
