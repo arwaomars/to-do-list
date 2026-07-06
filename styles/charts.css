@@ -1,0 +1,87 @@
+.charts {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+  height: 200px;
+}
+
+.filter-buttons-section {
+  display: flex;
+  direction: rtl; /* لتنظيم الاتجاه من اليمين لليسار */
+  justify-content: space-between; /* توزيع الأزرار بالتساوي */
+  align-items: center;
+  width: 100%;
+  max-width: 320px; /* تحديد عرض مناسب للحاوية لكي لا تمتد بشكل مفرط فوق الرسم البياني */
+  margin: 0 auto 15px auto; /* توسيط الحاوية وإضافة مسافة أسفلها */
+  background-color: #f1f5f9; /* خلفية رمادية فاتحة ناعمة تفصل الأزرار */
+  padding: 4px;
+  border-radius: 30px; /* حواف دائرية بالكامل لتعطي مظهر عصري Pills */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); /* ظل داخلي خفيف عمق */
+}
+
+.filter-buttons {
+  flex: 1;
+  background-color: transparent; /* إزالة الخلفية البيضاء الافتراضية */
+  color: #64748b; /* لون نص رمادي هادئ للأزرار غير النشطة */
+  font-size: 14px; /* حجم خط متناسق ومناسب جداً للمساحة فوق الـ Chart */
+  font-weight: bold;
+  padding: 8px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 25px; /* حواف دائرية للزر نفسه عند التحديد */
+  transition: all 0.3s ease; /* حركة ناعمة جداً عند الانتقال والضغط */
+}
+
+/* تأثير عند تمرير الماوس فوق الزر غير المختار */
+.filter-buttons:hover {
+  color: #1f6e8c;
+}
+
+/* الكلاس الخاص بالزر المفتوح (النشط) - سيتلون بالأزرق الخاص بهويتك */
+.filter-buttons.active {
+  background-color: #37bed5;
+  color: white !important;
+  box-shadow: 0 4px 6px -1px rgba(31, 110, 140, 0.3); /* ظل أزرق ناعم أسفل الزر النشط */
+}
+
+/*نسبة الانجاز*/
+.productivity-stats {
+  display: flex;
+  direction: rtl;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  padding: 12px 15px;
+  background: #f8fafc;
+  border: 1px solid #dbe4ee;
+  font-size: 15px;
+}
+
+.productivity-stats span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: #485359;
+}
+
+.productivity-stats span {
+  color: #485359;
+  font-weight: 600;
+}
+
+.productivity-stats strong {
+  color: #37bed5;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.productivity-stats .material-symbols-outlined {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #26343f;
+}

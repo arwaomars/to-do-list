@@ -1,0 +1,100 @@
+/* جدول المهام  */
+/* 1. الحاوية الرئيسية التي تجمع كل شيء */
+.active_cards {
+  background-color: #37bed5;
+  border: 1px solid #e6e6e6;
+  border-radius: 16px !important; /* زدنا الحردة إلى 16px لتكون ناعمة وواضحة جداً */
+  overflow: hidden !important; /* [مهم جداً] هو الذي يجبر الهيدر النيلي على الانحناء مع الأب */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: block; /* نضمن أنه يتعامل ككتلة واحدة قابلة للقص */
+  width: 100%;
+}
+
+/* 2. الهيدر العلوي الملون (مهامي) */
+#cards_header {
+  position: relative; /* لتثبيت زر الإضافة بالنسبة لهذا العنصر */
+  direction: rtl;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* يوسّط العنوان تماماً */
+  background-color: #37bed5;
+  padding: 18px 20px; /* زيادة البادينج قليلاً لإعطاء مظهر ناعم واحترافي */
+  margin: 0 !important; /* إلغاء أي فجوات تماماً */
+  border-top-left-radius: 14px; /* تأكيد إضافي للانحناء العلوي الأيسر */
+  border-top-right-radius: 14px; /* تأكيد إضافي للانحناء العلوي الأيمن */
+}
+
+#card_header_title {
+  margin: 0;
+}
+
+/* 3. جدول وحاوية المهام المتصلة بالهيدر */
+#tasks_container {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  margin: 0 !important; /* صفر لضمان الالتصاق التام بأسفل الهيدر */
+  padding: 0 !important;
+  border: none !important; /* إلغاء أي حدود داخلية تسبب زوايا حادة */
+  border-bottom-left-radius: 14px; /* تأكيد الانحناء السفلي الأيسر لآخر مهمة */
+  border-bottom-right-radius: 14px; /* تأكيد الانحناء السفلي الأيمن لآخر مهمة */
+  overflow: hidden;
+}
+
+/* 4. تنسيق المهمة المفردة لتتوافق مع الانحناء السفلية */
+.task {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  direction: rtl;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* إزالة الخط الفاصل للمهمة الأخيرة لكي لا يتداخل مع حافة الصندوق السفلية */
+.task:last-child {
+  border-bottom: none;
+}
+
+.task_info {
+  text-align: right;
+  flex-grow: 1;
+}
+
+.task_info h2 {
+  font-size: 16px;
+  color: #333333;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* الحاوية الخاصة بأزرار التحكم */
+.task_actions_wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* في الشاشات الكبيرة تكون الأزرار بجانب بعضها تلقائياً */
+.task_dropdown_menu {
+  display: flex;
+  gap: 10px;
+}
+
+/* إخفاء زر الثلاث نقاط تماماً على الكمبيوتر */
+.mobile_dots_btn {
+  display: none !important;
+}
+
+/* ستايل المهمة المكتملة */
+.doneTask {
+  background-color: transparent !important;
+  border-bottom: 1px solid #e6e6e6;
+}
+.doneTask h2 {
+  color: #a0aab5 !important;
+  text-decoration: line-through;
+}

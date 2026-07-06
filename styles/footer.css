@@ -1,0 +1,93 @@
+.main-footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  padding: 20px 0;
+  width: 100%;
+  direction: rtl;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.02);
+  margin-top: auto; /* تأكيد إضافي لدفعه للأسفل */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* لجعل العناصر تنزل أسفل بعضها في الشاشات الصغيرة */
+  gap: 15px;
+}
+
+/* النص وجهة اليمين */
+.copyright-text {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.copyright-text span {
+  color: #37bed5; /* تلوين اسمك بلون الهوية الأزرق */
+  font-weight: bold;
+}
+
+/* جهة اليسار (التواصل والأيقونات) */
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+/* رابط الإيميل */
+.footer-link.email-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.footer-link.email-link:hover {
+  color: #1f6e8c;
+}
+
+.footer-link .material-symbols-outlined {
+  font-size: 18px;
+}
+
+/* حاوية الأيقونات */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* أزرار التواصل الاجتماعي الدائرية */
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  color: #64748b;
+  transition: all 0.3s ease;
+}
+
+/* تأثير عند التمرير على لينكد إن */
+.social-icon.linkedin:hover {
+  background-color: #0a66c2;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* تأثير عند التمرير على جيت هاب */
+.social-icon.github:hover {
+  background-color: #24292e;
+  color: #ffffff;
+  transform: translateY(-2px);
+}

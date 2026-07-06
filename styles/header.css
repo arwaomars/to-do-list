@@ -1,0 +1,46 @@
+header {
+  background: #26343f;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  direction: rtl;
+}
+
+/* القسم الأيمن في الهيدر */
+.header-right h1 {
+  margin: 0;
+  font-size: 42px;
+}
+.header-right p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #d7e6f7;
+}
+
+/* القسم الأيسر في الهيدر */
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+/* كل سطر (أيقونة + نص) */
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* الأيقونات */
+.header-info .material-symbols-outlined {
+  font-size: 26px;
+  color: white;
+}
+/* النص */
+.header-info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}

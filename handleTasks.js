@@ -37,31 +37,38 @@ function readTask() {
   for (task of todayTasks) {
     let content = `
   <div class="task ${task.isDone ? "doneTask" : ""}">
+    
+    <button class="task_checkbox ${task.isDone ? "checked" : ""}" onclick="completeTask(${task.id})">
+      <span class="material-symbols-outlined">check</span>
+    </button>
+
     <div class="task_info">
-        <h2>${task.title}</h2>
+      <h2>${task.title}</h2>
     </div>
 
-    <div id="task_actions">
-        <button class="circular_btn ${task.isDone ? "done_btn_active" : ""}" id="done_btn" onclick="completeTask(${task.id})">
-            <span class="material-symbols-outlined">check</span>
-        </button>
-        
+    <div class="task_actions_wrapper">
+      <button class="mobile_dots_btn" onclick="toggleMenu(event, ${task.id})">
+        <span class="material-symbols-outlined">more_vert</span>
+      </button>
+
+      <div class="task_dropdown_menu" id="dropdown-${task.id}">
         ${
           !task.isDone
             ? `
-            <button class="circular_btn" id="edit_btn" onclick="editTask(${task.id})">
-                <span class="material-symbols-outlined">edit</span>
-            </button>
-            <button class="circular_btn" id="delet_btn" onclick="deletTask(${task.id})">
-                <span class="material-symbols-outlined">delete</span>
-            </button>
+          <button class="action_icon_only edit" onclick="editTask(${task.id})">
+            <span class="material-symbols-outlined">edit</span>
+          </button>
         `
             : ""
         }
+        <button class="action_icon_only delete" onclick="deletTask(${task.id})">
+          <span class="material-symbols-outlined">delete</span>
+        </button>
+      </div>
     </div>
-</div>
-`;
 
+  </div>
+`;
     // 3. إضافة الـ HTML الجديد بداخل الحاوية الكبيرة
     document.getElementById("tasks_container").innerHTML += content;
     index++;
@@ -240,6 +247,29 @@ function updateProductivityStats() {
 
   document.getElementById("progressPercent").textContent = percent + "%";
 }
+
+// كود لتشغيل قائمة الثلاث نقاط في الجوال
+function toggleMenu(event, taskId) {
+  event.stopPropagation(); // يمنع تضارب الضغطات
+
+  // إغلاق أي قائمة مفتوحة مسبقاً
+  document.querySelectorAll(".actions_dropdown").forEach((menu) => {
+    if (menu.id !== `dropdown-${taskId}`) {
+      menu.classList.remove("show_menu");
+    }
+  });
+
+  // فتح أو إغلاق القائمة المستهدفة
+  const currentMenu = document.getElementById(`dropdown-${taskId}`);
+  currentMenu.classList.toggle("show_menu");
+}
+
+// إغلاق القائمة تلقائياً إذا ضغط المستخدم في أي مكان فارغ بالصفحة
+document.addEventListener("click", () => {
+  document.querySelectorAll(".actions_dropdown").forEach((menu) => {
+    menu.classList.remove("show_menu");
+  });
+});
 
 window.addEventListener("DOMContentLoaded", () => {
   readTask();

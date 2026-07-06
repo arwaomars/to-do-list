@@ -13,8 +13,8 @@ function initChart() {
         {
           label: "المهام المنجزة",
           data: [],
-          borderColor: "#2A9D8F", // لون الخط
-          backgroundColor: "#2A9D8F", // لون النقاط
+          borderColor: "#36BF91", // لون الخط
+          backgroundColor: "#36BF91", // لون النقاط
           borderWidth: 1,
           fill: false,
           pointRadius: 5,
@@ -23,8 +23,8 @@ function initChart() {
         {
           label: "المهام غير المنجزة",
           data: [],
-          borderColor: "#C94A4A",
-          backgroundColor: "#C94A4A",
+          borderColor: "#FF6F59 ",
+          backgroundColor: "#FF6F59 ",
           borderWidth: 1,
           fill: false,
           pointRadius: 5,

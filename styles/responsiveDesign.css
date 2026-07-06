@@ -4,17 +4,14 @@
 
 /*========== Tablets ==========*/
 @media (max-width: 992px) {
-  /* الهيدر */
   header {
     padding: 20px 30px;
   }
 
-  /* جعل الأقسام تحت بعضها */
   .container {
     flex-direction: column;
   }
 
-  /* الأقسام تأخذ عرض الشاشة */
   #card_side,
   #charts_side {
     width: 100%;
@@ -26,7 +23,6 @@
     border-radius: 0;
   }
 
-  /* إحصائيات الإنجاز */
   .productivity-stats {
     gap: 15px;
     justify-content: center;
@@ -35,109 +31,144 @@
 
 /*========== Mobile ==========*/
 @media (max-width: 768px) {
-  /* الهيدر */
+  /*==========================
+        Header
+  ===========================*/
   header {
+    display: flex;
     flex-direction: column;
-    text-align: center;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .header-right h1 {
-    font-size: 32px;
-  }
-
-  .header-right p {
-    font-size: 16px;
-  }
-
-  .header-left {
     align-items: center;
-  }
-
-  .header-info {
     justify-content: center;
+    text-align: center;
+    gap: 6px;
+    padding: 14px 15px;
+  }
+  .header-right h1 {
+    font-size: 24px;
+    margin: 0 0 4px 0;
+  }
+  .header-right p {
+    font-size: 13px;
+    margin: 0;
+  }
+  .header-left {
+    width: 100%;
+  }
+  .header-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    width: 100%;
+    direction: rtl;
+  }
+  .header-info {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .header-info h3 {
+    font-size: 11px;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .header-info .material-symbols-outlined {
+    font-size: 15px;
   }
 
-  /* جسم الصفحة */
+  /*==========================
+        Layout
+  ===========================*/
   .container {
     flex-direction: column;
   }
-
   #card_side,
   #charts_side {
     width: 100%;
     margin: 0;
     padding: 15px;
   }
-
   #charts_side {
     margin-top: 15px;
   }
 
-  /* عنوان المهام */
-  #card_header {
-    padding: 12px 15px;
+  /*==========================
+      Card Header
+  ===========================*/
+  #cards_header {
+    padding: 12px 16px;
+    border-radius: 12px;
   }
-
   #card_header_title {
-    font-size: 20px;
+    font-size: 22px;
   }
-
-  /* الكروت */
-  .task {
-    padding: 15px;
-  }
-
-  .task_info h2 {
-    font-size: 16px;
-  }
-
-  #task_actions {
-    gap: 10px;
-  }
-
-  .circular_btn {
+  #add_task_btn {
     width: 34px;
     height: 34px;
   }
-
-  /* أزرار الفلترة */
-  .filter-buttons-section {
-    width: 100%;
-    max-width: 100%;
+  #add_task_btn .material-symbols-outlined {
+    font-size: 20px;
   }
 
-  /* إحصائيات الإنجاز */
+  /*==========================
+        Tasks
+  ===========================*/
+  .task {
+    padding: 12px 15px;
+  }
+  .task_info h2 {
+    font-size: 15px;
+  }
+
+  /*==========================
+     Productivity
+  ===========================*/
   .productivity-stats {
-    justify-content: center;
-    gap: 15px;
-    font-size: 14px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 10px 6px;
   }
-
+  .productivity-stats span {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 12px;
+    text-align: center;
+  }
   .productivity-stats strong {
-    font-size: 16px;
+    font-size: 15px;
+    margin-right: 0;
+  }
+  .productivity-stats .material-symbols-outlined {
+    font-size: 18px;
   }
 
-  /* الرسم البياني */
+  /*==========================
+         Chart
+  ===========================*/
   canvas {
     width: 100% !important;
     height: auto !important;
   }
 
-  /* النوافذ المنبثقة */
+  /*==========================
+        Popup
+  ===========================*/
   .card-content {
     width: 95%;
     padding: 20px;
   }
 
-  /* الفوتر */
+  /*==========================
+        Footer
+  ===========================*/
   .footer-container {
     flex-direction: column;
     text-align: center;
     gap: 15px;
   }
-
   .footer-left {
     flex-direction: column;
     gap: 15px;
@@ -147,19 +178,23 @@
 /*========== Small Mobile ==========*/
 @media (max-width: 480px) {
   header {
-    padding: 15px;
+    padding: 12px;
   }
-
   .header-right h1 {
-    font-size: 28px;
+    font-size: 20px;
+    margin-bottom: 2px;
   }
-
   .header-right p {
-    font-size: 15px;
+    font-size: 12px;
   }
-
   .header-info h3 {
-    font-size: 16px;
+    font-size: 10px;
+  }
+  .header-info .material-symbols-outlined {
+    font-size: 13px;
+  }
+  .header-details {
+    gap: 7px;
   }
 
   #card_header_title {
@@ -172,30 +207,17 @@
 
   /* إحصائيات الإنجاز */
   .productivity-stats {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap; /* يمنع نزول العناصر تحت بعض */
-    gap: 8px;
-    overflow-x: auto; /* إذا الشاشة ضيقة جدًا يسمح بالتمرير */
-    padding: 10px;
-  }
-
-  .productivity-stats span {
-    display: flex;
-    align-items: center;
     gap: 4px;
-    white-space: nowrap; /* يمنع كسر النص */
-    font-size: 13px;
+    padding: 8px 4px;
   }
-
+  .productivity-stats span {
+    font-size: 11px;
+  }
   .productivity-stats strong {
-    font-size: 15px;
+    font-size: 14px;
   }
-
   .productivity-stats .material-symbols-outlined {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .filter-buttons {

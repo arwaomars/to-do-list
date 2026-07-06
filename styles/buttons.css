@@ -1,0 +1,101 @@
+/* 1. التشيك بوكس الدائري الأنيق */
+.task_checkbox {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #b4b4b4;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.task_checkbox .material-symbols-outlined {
+  font-size: 18px;
+  color: transparent; /* مخفي في الحالة العادية */
+  transition: color 0.2s;
+}
+
+/* عند الـ Hover */
+.task_checkbox:hover {
+  border-color: #2a9d8f;
+}
+.task_checkbox:hover .material-symbols-outlined {
+  color: rgba(42, 157, 143, 0.4);
+}
+
+/* حالة اكتمال المهمة (Checked) */
+.task_checkbox.checked {
+  background-color: #36bf91 !important;
+  border-color: #36bf91 !important;
+}
+.task_checkbox.checked .material-symbols-outlined {
+  color: #ffffff !important;
+}
+
+/* زر إضافة مهمة جديدة: دائري، بنفس روح زر إكمال المهمة، ومثبّت يمين الهيدر */
+#add_task_btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ffffff;
+  color: #26343f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+#add_task_btn .material-symbols-outlined {
+  font-size: 22px;
+}
+
+#add_task_btn:hover {
+  background-color: #eafaf7;
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* 2. أزرار الأيقونات الصافية (بدون خلفية، بدون حدود، بدون ظلال دائرية) */
+.action_icon_only {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.action_icon_only .material-symbols-outlined {
+  font-size: 22px;
+}
+
+/* ألوان الأيقونات عند التمرير */
+.action_icon_only.edit {
+  color: #26343f;
+}
+.action_icon_only.edit:hover {
+  transform: scale(1.15);
+}
+
+.action_icon_only.delete {
+  color: #26343f;
+}
+.action_icon_only.delete:hover {
+  transform: scale(1.15);
+}
