@@ -1,3 +1,6 @@
+// مصفوفة المهام الأساسية
+let tasks = [];
+
 //======= storage funcions =======
 function setTaskToStorage() {
   localStorage.setItem("tasks", JSON.stringify(tasks));

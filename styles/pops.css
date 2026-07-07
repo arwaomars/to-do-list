@@ -24,7 +24,8 @@
 }
 /* تخصيص صندوق الإدخال */
 #task_input,
-#edit_task_input {
+#edit_task_input,
+#username_input {
   width: 100%;
   padding: 10px;
   margin: 15px 0;
@@ -45,7 +46,8 @@
 }
 #confirm_task_btn,
 #undelet_task_btn,
-#update_task_btn {
+#update_task_btn,
+#confirm_username_btn {
   background-color: #2a9d8f;
   color: white;
 } /* لون الإضافة */

@@ -23,8 +23,8 @@ function initChart() {
         {
           label: "المهام غير المنجزة",
           data: [],
-          borderColor: "#FF6F59 ",
-          backgroundColor: "#FF6F59 ",
+          borderColor: "#c94a4a ",
+          backgroundColor: "#c94a4a ",
           borderWidth: 1,
           fill: false,
           pointRadius: 5,
